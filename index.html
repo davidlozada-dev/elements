@@ -2,9 +2,87 @@
 <html lang="en">
    <head>
       <meta charset="utf-8"/>
-      <title>Elements  the videogame</title>
+      <title>Elements</title>
    </head>
    <body>
+      <header>
+         <h1>Elements 🌱💧🔥</h1>
+      </header>
       
+      <section id="choose-character">
+         <h2>Pick up a character!</h2>
+         <div>
+            <label for="capricorn">Capricorn</label>
+            <input type="radio" name="character" id="capricorn"/>
+            
+            <label for="aquarius">Aquarius</label>            
+            <input type="radio" name="character" id="aquarius"/>
+
+            <label for="leo">Leo</label>
+            <input type="radio" name="character" id="leo"/>
+            
+            <button id="btn-choose-character">Select Character</button>
+         </div>         
+      </section>
+
+      <section id="choose-attack-element">
+         <h2>Choose an element to attack your enemy!</h2>
+         <div>
+            <button id="btn-attack-earth">Earth 🪨</button>
+            <button id="btn-attack-water">Water 💦</button>
+            <button id="btn-attack-fire">Fire 💥</button>
+         </div>   
+      </section>
+
+      <section>
+         <h2>Battlefield</h2>
+         <div>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Your Character</th>
+                     <th>Your Element</th>
+                     <th>Your Lives</th>
+                     <th>Your Enemy's Character</th>
+                     <th>Your Enemy's Element</th>
+                     <th>Your Enemy's Lives</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <img src="https://www.kindpng.com/picc/m/74-749706_capricorn-zodiac-sign-png-transparent-png.png" width="100"/>
+                     </td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td>
+                        <img src="https://snipstock.com/assets/cdn/png/120c20d1aa7eb4f7f6cf50e0d53ef1c9.png" width="100"/>
+                     </td>
+                  </tr>
+               </tbody>
+               <tfoot>
+                  <tr>
+                     <td>Battle's Result</td>
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
+      </section>
+
+      <section>
+         <p>Final result</p>
+         <button>Play Again!</button>
+      </section>
+
    </body>
 </html>
