@@ -13,24 +13,25 @@
          <h2>Pick up a character!</h2>
          <div>
             <label for="capricorn">Capricorn</label>
-            <input type="radio" name="character" id="capricorn"/>
+            <input type="radio" name="character" id="capricorn" value="Capricorn"/>
             
             <label for="aquarius">Aquarius</label>            
-            <input type="radio" name="character" id="aquarius"/>
+            <input type="radio" name="character" id="aquarius" value="Aquarius"/>
 
             <label for="leo">Leo</label>
-            <input type="radio" name="character" id="leo"/>
+            <input type="radio" name="character" id="leo" value="Leo"/>
             
-            <button id="btn-choose-character">Select Character</button>
-         </div>         
+            <button id="choose-character-btn">Select Character</button>
+         </div>  
+         <div id="choose-character-msg"></div>       
       </section>
 
       <section id="choose-attack-element">
          <h2>Choose an element to attack your enemy!</h2>
          <div>
-            <button id="btn-attack-earth">Earth 🪨</button>
-            <button id="btn-attack-water">Water 💦</button>
-            <button id="btn-attack-fire">Fire 💥</button>
+            <button id="earth-btn">Earth 🪨</button>
+            <button id="water-btn">Water 💦</button>
+            <button id="fire-btn">Fire 💥</button>
          </div>   
       </section>
 
@@ -84,5 +85,6 @@
          <button>Play Again!</button>
       </section>
 
+      <script src="./js/elements.js" type="text/javascript"></script>
    </body>
 </html>
