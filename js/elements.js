@@ -1,7 +1,7 @@
 window.addEventListener("load", setEventListeners);
 
 function setEventListeners() {
-  document.getElementById("choose-attanck-element").style.display = "none";
+  document.getElementById("choose-attack-element").style.display = "none";
   document.getElementById("battlefield").style.display = "none";
   document.getElementById("final-result").style.display = "none";
 
@@ -56,6 +56,8 @@ function choosePcCharacter() {
 
   divOptionsSiblings[0].style.display = "none";
   divOptions.style.display = "none";
+
+  document.getElementById("choose-attack-element").style.display = "block";
   document.getElementById("battlefield").style.display = "block";
 }
 
