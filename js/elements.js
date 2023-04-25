@@ -1,6 +1,10 @@
 window.addEventListener("load", setEventListeners);
 
 function setEventListeners() {
+  document.getElementById("choose-attanck-element").style.display = "none";
+  document.getElementById("battlefield").style.display = "none";
+  document.getElementById("final-result").style.display = "none";
+
   let selectCharacterBtn = document.getElementById("choose-character-btn");
   selectCharacterBtn.addEventListener("click", choosePlayerCharacter);
 }
@@ -35,6 +39,8 @@ function choosePcCharacter() {
   let randomNumber = randomNumberGivenARange(1, 3);
   let messageElement = document.getElementById("choose-character-msg");
   let paragraphElement = document.createElement("p");
+  let divOptions = document.getElementById("choose-character-options");
+  let divOptionsSiblings = document.querySelectorAll("#choose-character h2");
 
   if (randomNumber == 1) {
     pcChosenCharacter = "Capricorn";
@@ -45,8 +51,12 @@ function choosePcCharacter() {
   }
 
   paragraphElement.innerHTML =
-    "The PC has chosen " + pcChosenCharacter+ " as its character";
+    "The PC has chosen " + pcChosenCharacter + " as its character";
   messageElement.appendChild(paragraphElement);
+
+  divOptionsSiblings[0].style.display = "none";
+  divOptions.style.display = "none";
+  document.getElementById("battlefield").style.display = "block";
 }
 
 function randomNumberGivenARange(min, max) {
@@ -57,4 +67,3 @@ function randomNumberGivenARange(min, max) {
 
 let playerChosenCharacter;
 let pcChosenCharacter;
-
