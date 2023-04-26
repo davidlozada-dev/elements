@@ -29,9 +29,9 @@
       <section id="choose-attack-element">
          <h2>Choose an element to attack your enemy!</h2>
          <div>
-            <button id="earth-btn">Earth 🪨</button>
-            <button id="water-btn">Water 💦</button>
-            <button id="fire-btn">Fire 💥</button>
+            <button class="attack-btn" id="earth-btn" value="1">Earth 🪨</button>
+            <button class="attack-btn" id="water-btn" value="2">Water 💦</button>
+            <button class="attack-btn" id="fire-btn" value="3">Fire 💥</button>
          </div>   
       </section>
 
@@ -51,12 +51,12 @@
                </thead>
                <tbody>
                   <tr>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td><span id="player-character"></span></td>
+                     <td><span id="player-element"></span></td>
+                     <td><span id="player-lives"></span></td>
+                     <td><span id="pc-character"></span></td>
+                     <td><span id="pc-element"></span></td>
+                     <td><span id="pc-lives"></span></td>
                   </tr>
                   <tr>
                      <td>
@@ -73,7 +73,8 @@
                </tbody>
                <tfoot>
                   <tr>
-                     <td>Round's Result</td>
+                     <td>Last Round's Result:</td>
+                     <td><span id="battle-result"></span></td>
                   </tr>
                </tfoot>
             </table>
@@ -81,8 +82,8 @@
       </section>
 
       <section id="final-result">
-         <p>Final result</p>
-         <button>Play Again!</button>
+         <p id="final-result-msg">Final result</p>
+         <button id="play-again-btn">Play Again</button>
       </section>
 
       <script src="./js/elements.js" type="text/javascript"></script>
