@@ -9,53 +9,49 @@ function setEventListeners() {
     window.location.reload();
   });
 
-  document.getElementById("choose-attack-element").style.display = "none";
   document.getElementById("battlefield").style.display = "none";
   document.getElementById("final-result").style.display = "none";
 }
 
-function disableElement(elementId) {
-  document.getElementById(elementId).disabled = true;
-}
-
 function choosePlayerCharacter() {
   let characters = document.getElementsByName("character");
-  let messageElement = document.getElementById("choose-character-msg");
-  let paragraphElement = document.createElement("p");
+
   let characterCell = document.getElementById("player-character");
   let elementCell = document.getElementById("player-element");
   let livesCell = document.getElementById("player-lives");
+
+  let parentElement = document.getElementById("player-character-img");
+  let playerCharacterImage;
 
   for (let i = 0; i < characters.length; i++) {
     if (characters[i].checked == true) {
       playerChosenCharacter = characters[i].value;
     }
-
-    disableElement(characters[i].id);
   }
-
-  paragraphElement.innerHTML =
-    "You have chosen " + playerChosenCharacter + " as your character";
-  messageElement.appendChild(paragraphElement);
-
-  disableElement("choose-character-btn");
 
   choosePcCharacter();
 
   characterCell.innerText = playerChosenCharacter;
   elementCell.innerText = characterElement(playerChosenCharacter);
   livesCell.innerText = playerLives;
+
+  playerCharacterImage = selectCharacterImage(playerChosenCharacter, false);
+  parentElement.insertBefore(playerCharacterImage, parentElement.firstChild);
 }
 
 function choosePcCharacter() {
   let randomNumber = randomNumberGivenARange(1, 3);
-  let messageElement = document.getElementById("choose-character-msg");
-  let paragraphElement = document.createElement("p");
-  let divOptions = document.getElementById("choose-character-options");
-  let divOptionsSiblings = document.querySelectorAll("#choose-character h2");
+  let subtitleElement = document.getElementById("subtitle");
+
+  let chooseCharacterElement = document.getElementById("choose-character");
+  let battlefieldElement = document.getElementById("battlefield");
+
   let characterCell = document.getElementById("pc-character");
   let elementCell = document.getElementById("pc-element");
   let livesCell = document.getElementById("pc-lives");
+
+  let parentElement = document.getElementById("pc-character-img");
+  let pcCharacterImage ;
 
   if (randomNumber == 1) {
     pcChosenCharacter = "Capricorn";
@@ -65,19 +61,17 @@ function choosePcCharacter() {
     pcChosenCharacter = "Leo";
   }
 
-  paragraphElement.innerHTML =
-    "The PC has chosen " + pcChosenCharacter + " as its character";
-  messageElement.appendChild(paragraphElement);
   characterCell.innerText = pcChosenCharacter;
   elementCell.innerText = characterElement(pcChosenCharacter);
   livesCell.innerText = pcLives;
-  /*  */
 
-  divOptionsSiblings[0].style.display = "none";
-  divOptions.style.display = "none";
+  pcCharacterImage = selectCharacterImage(pcChosenCharacter, false);
+  parentElement.insertBefore(pcCharacterImage, parentElement.firstChild);
 
-  document.getElementById("choose-attack-element").style.display = "block";
-  document.getElementById("battlefield").style.display = "block";
+  chooseCharacterElement.style.display = "none";
+
+  subtitleElement.innerText = "Choose an attack!"
+  battlefield.style.display = "block";
 
   let selectAttackBtn = document.querySelectorAll(".attack-btn");
   selectAttackBtn.forEach((element) => {
@@ -95,6 +89,7 @@ function battle() {
   let pcChosenAttack = randomNumberGivenARange(1, 3);
   let playerChosenAttack = this.value;
   let battleResult;
+  let battleResultElement = document.getElementById("battle-result");
   let livesCell = document.getElementById("player-lives");
 
   if (pcChosenAttack == playerChosenAttack) {
@@ -121,7 +116,8 @@ function battle() {
     document.getElementById("pc-lives").innerText = pcLives;
   }
 
-  document.getElementById("battle-result").innerText = battleResult;
+  battleResultElement.innerText = battleResult;
+
   checkingScore();
 }
 
@@ -141,18 +137,53 @@ function characterElement(character) {
 
 function checkingScore() {
   if(playerLives == 0 || pcLives == 0){
+    let subtitleElement = document.getElementById("subtitle");
     let finalResultElement =  document.getElementById("final-result");
     let result = (playerLives == 0) ? "PC has won the game!" : "Player has won the game!";
 
-    document.getElementById("choose-attack-element").style.display = "none";
     document.getElementById("battlefield").style.display = "none";
 
+    subtitleElement.innerText = "Final Result";
     finalResultElement.style.display = "block";
     
     let finalResultMessageElement =  document.getElementById("final-result-msg");
 
     finalResultMessageElement.innerText = result;
   }
+}
+
+function selectCharacterImage(characterName, isPlayer) {
+let selectedImage = document.createElement("img");
+/*  */selectedImage.id = (isPlayer) ? "player-img" : "pc-img";
+selectedImage.className = "character-img";
+
+  switch(characterName) {
+    case "Capricorn": 
+      selectedImage.src = "./assets/goat.png";
+      selectedImage.alt = "Capricorn";
+
+      break;
+    
+
+    case "Aquarius": 
+      selectedImage.src = "./assets/koi.png";
+      selectedImage.alt = "Aquarius";
+
+      break;
+    
+
+    case "Leo": 
+      selectedImage.src = "./assets/lion.png";
+      selectedImage.alt = "Leo";
+
+      break;
+
+    default:
+      selectedImage.src = "./assets/warning.png";
+      selectedImage.alt = "Warning";
+  }
+
+  return selectedImage;
 }
 
 let playerChosenCharacter;
