@@ -1,88 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8"/>
-      <title>Elements</title>
-      <link rel="stylesheet" href="./styles.css"/>
-   </head>
-   <body>
-      <header>
-         <h1>Elements 🌱💧🔥</h1>
-      </header>
-      
-      <section id="choose-character">
-         <h2>Pick up a character!</h2>
-         <div id="choose-character-options">
-            <label for="capricorn">Capricorn</label>
-            <input type="radio" name="character" id="capricorn" value="Capricorn"/>
-            
-            <label for="aquarius">Aquarius</label>            
-            <input type="radio" name="character" id="aquarius" value="Aquarius"/>
 
-            <label for="leo">Leo</label>
-            <input type="radio" name="character" id="leo" value="Leo"/>
-            
-            <button id="choose-character-btn">Select Character</button>
-         </div>  
-         <div id="choose-character-msg"></div>       
-      </section>
+<head>
+   <meta charset="utf-8" />
+   <title>Elements</title>
+   <link rel="stylesheet" href="./styles.css" />
+</head>
 
-      <section id="choose-attack-element">
-         <h2>Choose an element to attack your enemy!</h2>
+<body>
+   <header>
+      <h1 id="title">Elements 🌱💧🔥</h1>
+
+      <h2 id="subtitle"></h2>
+   </header>
+
+   <section id="choose-character">
+      <div id="choose-character-options">
+         <input type="radio" name="character" id="capricorn" value="Capricorn" />
+         <label for="capricorn">Capricorn</label>
+
+         <input type="radio" name="character" id="aquarius" value="Aquarius" />
+         <label for="aquarius">Aquarius</label>
+
+         <input type="radio" name="character" id="leo" value="Leo" />
+         <label for="leo">Leo</label>
+      </div>
+
+
+      <button id="choose-character-btn">Select Character</button>
+   </section>
+
+   <section id="battlefield">
+      <div id="choose-attack-element">
+         <button class="attack-btn" id="earth-btn" value="1">Earth 🪨</button>
+         <button class="attack-btn" id="water-btn" value="2">Water 💦</button>
+         <button class="attack-btn" id="fire-btn" value="3">Fire 💥</button>
+      </div>
+
+      <div>
          <div>
-            <button class="attack-btn" id="earth-btn" value="1">Earth 🪨</button>
-            <button class="attack-btn" id="water-btn" value="2">Water 💦</button>
-            <button class="attack-btn" id="fire-btn" value="3">Fire 💥</button>
-         </div>   
-      </section>
+            <div id="player-status-info">
+               <span id="player-element"></span>
+               <span id="player-lives"></span>
+            </div>
 
-      <section id="battlefield">
-         <h2>Battlefield</h2>
-         <div>
-            <table>
-               <thead>
-                  <tr>
-                     <th>Your Character</th>
-                     <th>Your Element</th>
-                     <th>Your Lives</th>
-                     <th>Your Enemy's Character</th>
-                     <th>Your Enemy's Element</th>
-                     <th>Your Enemy's Lives</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td><span id="player-character"></span></td>
-                     <td><span id="player-element"></span></td>
-                     <td><span id="player-lives"></span></td>
-                     <td><span id="pc-character"></span></td>
-                     <td><span id="pc-element"></span></td>
-                     <td><span id="pc-lives"></span></td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <img src="https://www.kindpng.com/picc/m/74-749706_capricorn-zodiac-sign-png-transparent-png.png" width="100"/>
-                     </td>
-                     <td>
-                        <img src="https://snipstock.com/assets/cdn/png/120c20d1aa7eb4f7f6cf50e0d53ef1c9.png" width="100"/>
-                     </td>
-                  </tr>
-               </tbody>
-               <tfoot>
-                  <tr>
-                     <td>Last Round's Result:</td>
-                     <td><span id="battle-result"></span></td>
-                  </tr>
-               </tfoot>
-            </table>
+            <div id="player-character-img">
+               <img src="https://www.kindpng.com/picc/m/74-749706_capricorn-zodiac-sign-png-transparent-png.png"
+                  width="100" />
+               <span id="player-character"></span>
+            </div>
          </div>
-      </section>
 
-      <section id="final-result">
-         <p id="final-result-msg">Final result</p>
-         <button id="play-again-btn">Play Again</button>
-      </section>
+         <div>
+            <div id="pc-status-info">
+               <span id="pc-element"></span>
+               <span id="pc-lives"></span>
+            </div>
 
-      <script src="./js/elements.js" type="text/javascript"></script>
-   </body>
+            <div id="pc-character-img">
+               <img src="https://snipstock.com/assets/cdn/png/120c20d1aa7eb4f7f6cf50e0d53ef1c9.png" width="100" />
+               <span id="pc-character"></span>
+            </div>
+         </div>
+
+         <span id="battle-result"></span>
+   </section>
+
+   <section id="final-result">
+      <p id="final-result-msg">Final result</p>
+      <button id="play-again-btn">Play Again</button>
+   </section>
+
+   <script src="./js/elements.js" type="text/javascript"></script>
+</body>
+
 </html>
