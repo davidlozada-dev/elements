@@ -5,7 +5,7 @@ function setEventListeners() {
   selectCharacterBtn.addEventListener("click", choosePlayerCharacter);
 
   let playAgainBtn = document.getElementById("play-again-btn");
-  playAgainBtn.addEventListener("click", e => {
+  playAgainBtn.addEventListener("click", (e) => {
     window.location.reload();
   });
 
@@ -51,7 +51,7 @@ function choosePcCharacter() {
   let livesCell = document.getElementById("pc-lives");
 
   let parentElement = document.getElementById("pc-character-img");
-  let pcCharacterImage ;
+  let pcCharacterImage;
 
   if (randomNumber == 1) {
     pcChosenCharacter = "Capricorn";
@@ -70,7 +70,7 @@ function choosePcCharacter() {
 
   chooseCharacterElement.style.display = "none";
 
-  subtitleElement.innerText = "Choose an attack!"
+  subtitleElement.innerText = "Choose an attack!";
   battlefield.style.display = "block";
 
   let selectAttackBtn = document.querySelectorAll(".attack-btn");
@@ -136,43 +136,42 @@ function characterElement(character) {
 }
 
 function checkingScore() {
-  if(playerLives == 0 || pcLives == 0){
+  if (playerLives == 0 || pcLives == 0) {
     let subtitleElement = document.getElementById("subtitle");
-    let finalResultElement =  document.getElementById("final-result");
-    let result = (playerLives == 0) ? "PC has won the game!" : "Player has won the game!";
+    let finalResultElement = document.getElementById("final-result");
+    let result =
+      playerLives == 0 ? "PC has won the game!" : "Player has won the game!";
 
     document.getElementById("battlefield").style.display = "none";
 
     subtitleElement.innerText = "Final Result";
     finalResultElement.style.display = "block";
-    
-    let finalResultMessageElement =  document.getElementById("final-result-msg");
+
+    let finalResultMessageElement = document.getElementById("final-result-msg");
 
     finalResultMessageElement.innerText = result;
   }
 }
 
 function selectCharacterImage(characterName, isPlayer) {
-let selectedImage = document.createElement("img");
-/*  */selectedImage.id = (isPlayer) ? "player-img" : "pc-img";
-selectedImage.className = "character-img";
+  let selectedImage = document.createElement("img");
+  selectedImage.id = isPlayer ? "player-img" : "pc-img";
+  selectedImage.className = "character-img";
 
-  switch(characterName) {
-    case "Capricorn": 
+  switch (characterName) {
+    case "Capricorn":
       selectedImage.src = "./assets/goat.png";
       selectedImage.alt = "Capricorn";
 
       break;
-    
 
-    case "Aquarius": 
+    case "Aquarius":
       selectedImage.src = "./assets/koi.png";
       selectedImage.alt = "Aquarius";
 
       break;
-    
 
-    case "Leo": 
+    case "Leo":
       selectedImage.src = "./assets/lion.png";
       selectedImage.alt = "Leo";
 
