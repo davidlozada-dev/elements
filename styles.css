@@ -32,7 +32,7 @@ input[type="radio"] {
    display: none;
 }
 
-input[type="radio"]:checked + label{
+input[type="radio"]:checked+label {
    background-color: #A1B37F;
 }
 
@@ -49,8 +49,13 @@ label {
 }
 
 img {
-   margin-top: 25px;
    width: 100px;
+}
+
+
+.first-card-character-img {
+   margin-top: 25px;
+
 }
 
 label p {
@@ -61,7 +66,7 @@ label p {
 #choose-character-btn {
    font-family: 'Roboto', sans-serif;
    font-size: 16px;
-   color:  #2A2F4F ;
+   color: #2A2F4F;
    padding-top: 10px;
    padding-right: 20px;
    padding-bottom: 10px;
@@ -76,3 +81,99 @@ label p {
    background-color: #A1B37F;
 }
 
+
+#choose-attack-element {
+   display: flex;
+   justify-content: center;
+   margin-bottom: 25px;
+   gap: 15px;
+   /* margin-top: 10px; */
+}
+
+.attack-btn {
+   font-family: 'Roboto', sans-serif;
+   font-size: 16px;
+   color: #2A2F4F;
+   width: 100px;
+   height: 40px;
+   border: none;
+   border-radius: 20px;
+}
+
+#earth-btn:hover,
+#water-btn:hover,
+#fire-btn:hover {
+   font-size: 20px;
+   color: #FDE2F3;
+   background-color: #917FB3;
+}
+
+#earth-btn {
+   background-color: #CDE990;
+}
+
+#water-btn {
+   background-color: #88DEDC;
+}
+
+#fire-btn {
+   background-color: #F2A95F;
+}
+
+#chosen-characters {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   gap: 40px;
+}
+
+#player-card, #pc-card {
+   /* display: flex; */
+   flex-direction: column;
+   align-items: center;
+   width: 160px;
+   height: 280px;
+   background-color: #917FB3;
+   border-radius: 20px;
+   margin-bottom: 28px;
+   /* text-align: center; */
+}
+
+.character-lives-sub-div {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   background-color: #E5BEEC;
+   border-radius: 20px;
+   gap: 5px;
+}
+
+.heart-img {
+   margin-top: 10px;
+   margin-bottom: 10px;
+   align-items: center;
+   width: 30px;
+}
+
+.character-img {
+   margin-top: 10px;
+   margin-bottom: 10px;
+
+}
+
+.character-name {
+   display: block;
+   margin-bottom: 20px;
+}
+
+.contestant-name {
+   height: 48px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #2A2F4F;
+   background-color: #E5BEEC;
+   border-radius: 0px 0px 20px 20px;
+   font-size: 20px;
+}

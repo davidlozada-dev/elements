@@ -17,8 +17,8 @@ function choosePlayerCharacter() {
   let characters = document.getElementsByName("character");
 
   let characterCell = document.getElementById("player-character");
-  let elementCell = document.getElementById("player-element");
-  let livesCell = document.getElementById("player-lives");
+  // let elementCell = document.getElementById("player-element");
+  let livesCell = document.getElementById("player-status-info");
 
   let parentElement = document.getElementById("player-character-img");
   let playerCharacterImage;
@@ -32,8 +32,8 @@ function choosePlayerCharacter() {
   choosePcCharacter();
 
   characterCell.innerText = playerChosenCharacter;
-  elementCell.innerText = characterElement(playerChosenCharacter);
-  livesCell.innerText = playerLives;
+  // elementCell.innerText = characterElement(playerChosenCharacter);
+  livesCell.appendChild(displayHearts(playerLives));
 
   playerCharacterImage = selectCharacterImage(playerChosenCharacter, false);
   parentElement.insertBefore(playerCharacterImage, parentElement.firstChild);
@@ -47,8 +47,8 @@ function choosePcCharacter() {
   let battlefieldElement = document.getElementById("battlefield");
 
   let characterCell = document.getElementById("pc-character");
-  let elementCell = document.getElementById("pc-element");
-  let livesCell = document.getElementById("pc-lives");
+  // let elementCell = document.getElementById("pc-element");
+  let livesCell = document.getElementById("pc-status-info");
 
   let parentElement = document.getElementById("pc-character-img");
   let pcCharacterImage;
@@ -62,8 +62,8 @@ function choosePcCharacter() {
   }
 
   characterCell.innerText = pcChosenCharacter;
-  elementCell.innerText = characterElement(pcChosenCharacter);
-  livesCell.innerText = pcLives;
+  // elementCell.innerText = characterElement(pcChosenCharacter);
+  livesCell.appendChild(displayHearts(pcLives));
 
   pcCharacterImage = selectCharacterImage(pcChosenCharacter, false);
   parentElement.insertBefore(pcCharacterImage, parentElement.firstChild);
@@ -90,30 +90,33 @@ function battle() {
   let playerChosenAttack = this.value;
   let battleResult;
   let battleResultElement = document.getElementById("battle-result");
-  let livesCell = document.getElementById("player-lives");
 
   if (pcChosenAttack == playerChosenAttack) {
-    battleResult = "tie";
+    battleResult = "Tie";
   } else if (pcChosenAttack == 1 && playerChosenAttack == 2) {
     battleResult = "PC's victory!";
     pcVictories++;
     playerLives--;
-    document.getElementById("player-lives").innerText = playerLives;
+    document.getElementById("player-status-info").replaceChildren();
+    document.getElementById("player-status-info").appendChild(displayHearts(playerLives));
   } else if (pcChosenAttack == 2 && playerChosenAttack == 3) {
     battleResult = "PC's victory!";
     pcVictories++;
     playerLives--;
-    document.getElementById("player-lives").innerText = playerLives;
+    document.getElementById("player-status-info").replaceChildren();
+    document.getElementById("player-status-info").appendChild(displayHearts(playerLives));
   } else if (pcChosenAttack == 3 && playerChosenAttack == 1) {
     battleResult = "PC's victory!";
     pcVictories++;
     playerLives--;
-    document.getElementById("player-lives").innerText = playerLives;
+    document.getElementById("player-status-info").replaceChildren();
+    document.getElementById("player-status-info").appendChild(displayHearts(playerLives));
   } else {
     battleResult = "Player's victory";
     playerVictories++;
     pcLives--;
-    document.getElementById("pc-lives").innerText = pcLives;
+    document.getElementById("pc-status-info").replaceChildren();
+    document.getElementById("pc-status-info").appendChild(displayHearts(pcLives));
   }
 
   battleResultElement.innerText = battleResult;
@@ -183,6 +186,24 @@ function selectCharacterImage(characterName, isPlayer) {
   }
 
   return selectedImage;
+}
+
+function displayHearts(number){
+  let imageElement;
+  let imageDivElement = document.createElement("div");
+  imageDivElement.className = "character-lives-sub-div";
+
+  for(let i = 0; i < number; i++){
+    imageElement = document.createElement("img");
+    imageElement.className = "heart-img"
+    imageElement.src = "./assets/heart.png";
+    imageElement.alt = "heartNumber" + (i+1);
+
+
+    imageDivElement.appendChild(imageElement);
+  }
+
+  return imageDivElement;
 }
 
 let playerChosenCharacter;
