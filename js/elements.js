@@ -71,7 +71,7 @@ function choosePcCharacter() {
   chooseCharacterElement.style.display = "none";
 
   subtitleElement.innerText = "Choose an attack!";
-  battlefield.style.display = "block";
+  battlefield.style.display = "flex";
 
   let selectAttackBtn = document.querySelectorAll(".attack-btn");
   selectAttackBtn.forEach((element) => {
@@ -98,25 +98,33 @@ function battle() {
     pcVictories++;
     playerLives--;
     document.getElementById("player-status-info").replaceChildren();
-    document.getElementById("player-status-info").appendChild(displayHearts(playerLives));
+    document
+      .getElementById("player-status-info")
+      .appendChild(displayHearts(playerLives));
   } else if (pcChosenAttack == 2 && playerChosenAttack == 3) {
     battleResult = "PC's victory!";
     pcVictories++;
     playerLives--;
     document.getElementById("player-status-info").replaceChildren();
-    document.getElementById("player-status-info").appendChild(displayHearts(playerLives));
+    document
+      .getElementById("player-status-info")
+      .appendChild(displayHearts(playerLives));
   } else if (pcChosenAttack == 3 && playerChosenAttack == 1) {
     battleResult = "PC's victory!";
     pcVictories++;
     playerLives--;
     document.getElementById("player-status-info").replaceChildren();
-    document.getElementById("player-status-info").appendChild(displayHearts(playerLives));
+    document
+      .getElementById("player-status-info")
+      .appendChild(displayHearts(playerLives));
   } else {
     battleResult = "Player's victory";
     playerVictories++;
     pcLives--;
     document.getElementById("pc-status-info").replaceChildren();
-    document.getElementById("pc-status-info").appendChild(displayHearts(pcLives));
+    document
+      .getElementById("pc-status-info")
+      .appendChild(displayHearts(pcLives));
   }
 
   battleResultElement.innerText = battleResult;
@@ -148,7 +156,7 @@ function checkingScore() {
     document.getElementById("battlefield").style.display = "none";
 
     subtitleElement.innerText = "Final Result";
-    finalResultElement.style.display = "block";
+    finalResultElement.style.display = "flex";
 
     let finalResultMessageElement = document.getElementById("final-result-msg");
 
@@ -188,17 +196,16 @@ function selectCharacterImage(characterName, isPlayer) {
   return selectedImage;
 }
 
-function displayHearts(number){
+function displayHearts(number) {
   let imageElement;
   let imageDivElement = document.createElement("div");
   imageDivElement.className = "character-lives-sub-div";
 
-  for(let i = 0; i < number; i++){
+  for (let i = 0; i < number; i++) {
     imageElement = document.createElement("img");
-    imageElement.className = "heart-img"
+    imageElement.className = "heart-img";
     imageElement.src = "./assets/heart.png";
-    imageElement.alt = "heartNumber" + (i+1);
-
+    imageElement.alt = "heartNumber" + (i + 1);
 
     imageDivElement.appendChild(imageElement);
   }

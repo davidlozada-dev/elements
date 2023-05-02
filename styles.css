@@ -9,15 +9,18 @@ body {
    background-color: #2A2F4F;
    color: #F4F2F7;
    font-family: 'Roboto', sans-serif;
-   /* font-family: 'Sigmar', cursive; */
+
+   margin: 180px;
 }
 
 h1 {
+   font-size: 36px;
    font-family: 'Sigmar', cursive;
    color: #FDE2F3;
 }
 
 h2 {
+   font-size: 28px;
    color: #E5BEEC;
 }
 
@@ -63,7 +66,8 @@ label p {
    font-size: 20px;
 }
 
-#choose-character-btn {
+#choose-character-btn,
+#play-again-btn {
    font-family: 'Roboto', sans-serif;
    font-size: 16px;
    color: #2A2F4F;
@@ -76,11 +80,15 @@ label p {
    background-color: #FDE2F3;
 }
 
-#choose-character-btn:hover {
+#choose-character-btn:hover,
+#play-again-btn:hover {
    color: #F4F2F7;
    background-color: #A1B37F;
 }
 
+#battlefield {
+   flex-direction: column;
+}
 
 #choose-attack-element {
    display: flex;
@@ -127,7 +135,8 @@ label p {
    gap: 40px;
 }
 
-#player-card, #pc-card {
+#player-card,
+#pc-card {
    /* display: flex; */
    flex-direction: column;
    align-items: center;
@@ -176,4 +185,23 @@ label p {
    background-color: #E5BEEC;
    border-radius: 0px 0px 20px 20px;
    font-size: 20px;
+}
+
+#battle-result{
+   font-size: 25px;
+}
+
+#final-result {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 360px;
+   height: 180px;
+   background-color: #917FB3;
+   border-radius: 20px;
+}
+
+#final-result-msg {
+   font-size: 24px;
 }
