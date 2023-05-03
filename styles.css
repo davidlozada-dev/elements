@@ -23,6 +23,10 @@ h2 {
    font-size: 28px;
    color: #E5BEEC;
 }
+#choose-character {
+   flex-direction: column;
+   align-items: center;
+}
 
 #choose-character-options {
    display: flex;
@@ -78,6 +82,7 @@ label p {
    border: none;
    border-radius: 20px;
    background-color: #FDE2F3;
+   width: 180px;
 }
 
 #choose-character-btn:hover,
@@ -187,7 +192,7 @@ label p {
    font-size: 20px;
 }
 
-#battle-result{
+#battle-result {
    font-size: 25px;
 }
 
@@ -204,4 +209,68 @@ label p {
 
 #final-result-msg {
    font-size: 24px;
+}
+
+@media (max-width: 450px) {
+   body {
+      align-items: center;
+      margin-top: 25px;
+   }
+   
+   header { 
+      width: 200px;
+      align-items: center;
+   }
+
+   h1 { 
+      font-size: 28px;
+   }
+
+   h2 {
+      font-size: 20px;
+   }
+
+   label {
+      width: 120px;
+      height: 120px;
+   }
+
+   label p {
+      margin-top: 5px;
+      font-size: 15px;
+   }
+
+   .first-card-character-img {
+      margin-top: 16px;
+      width: 80px;
+   }
+   
+
+   #choose-character-options {
+      display: flex;
+      flex-direction: column;
+   }
+
+   #chosen-characters {
+      margin-top: 20px;
+      gap: 12px;
+   }
+
+   #battle-result {
+      margin-top: 28px;
+   }
+
+   #final-result {
+      width: 220px;
+      height: 200px;
+      margin: 80px;
+   }
+
+   #final-result-msg {
+      width: 180px;
+   }
+
+   #play-again-btn {
+      width: 120px;
+   }
 }

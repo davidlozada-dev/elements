@@ -9,6 +9,7 @@ function setEventListeners() {
     window.location.reload();
   });
 
+  document.getElementById("choose-character").style.display = "flex"
   document.getElementById("battlefield").style.display = "none";
   document.getElementById("final-result").style.display = "none";
 }
