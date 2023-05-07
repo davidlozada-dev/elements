@@ -23,6 +23,7 @@ h2 {
    font-size: 28px;
    color: #E5BEEC;
 }
+
 #choose-character {
    flex-direction: column;
    align-items: center;
@@ -216,13 +217,13 @@ label p {
       align-items: center;
       margin-top: 25px;
    }
-   
-   header { 
+
+   header {
       width: 200px;
       align-items: center;
    }
 
-   h1 { 
+   h1 {
       font-size: 28px;
    }
 
@@ -244,7 +245,7 @@ label p {
       margin-top: 16px;
       width: 80px;
    }
-   
+
 
    #choose-character-options {
       display: flex;
