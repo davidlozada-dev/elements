@@ -1,9 +1,10 @@
-let chooseCharacterElement = document.getElementById("choose-character");
-let battlefieldElement = document.getElementById("battlefield");
-let finalResultElement = document.getElementById("final-result");
-let subtitleElement = document.getElementById("subtitle");
-let pcStatusInfoElement = document.getElementById("pc-status-info");
-let playerStatusInfoElement = document.getElementById("player-status-info");
+const chooseCharacterElement = document.getElementById("choose-character");
+const battlefieldElement = document.getElementById("battlefield");
+const finalResultElement = document.getElementById("final-result");
+const subtitleElement = document.getElementById("subtitle");
+const pcStatusInfoElement = document.getElementById("pc-status-info");
+const playerStatusInfoElement = document.getElementById("player-status-info");
+
 
 window.addEventListener("load", setEventListeners);
 
@@ -19,6 +20,20 @@ function setEventListeners() {
   chooseCharacterElement.style.display = "flex";
   battlefieldElement.style.display = "none";
   finalResultElement.style.display = "none";
+
+  const chooseCharacterOptionsElement = document.getElementById("choose-character-options");
+  let characterElements;
+  let capitalizedName;
+  allCharacters.forEach(character => {
+    capitalizedName = character.name.charAt(0).toUpperCase() + character.name.slice(1);
+    characterElements = `<input type="radio" name="character" id="${character.name}" value="${capitalizedName}" />
+    <label for="${character.name}">
+       <img src="${character.image}" alt="${capitalizedName}" class="first-card-character-img" />
+       <p>${capitalizedName}</p>
+    </label>`;
+
+    chooseCharacterOptionsElement.innerHTML += characterElements;
+  });
 }
 
 function choosePlayerCharacter() {
@@ -197,6 +212,23 @@ function displayHearts(number) {
 
   return imageDivElement;
 }
+
+class CreateCharacter{
+  constructor(name, image){
+    this.name = name;
+    this.image = image;
+  }
+}
+
+let capricornCharacter = new CreateCharacter("capricorn", "./assets/goat.png");
+let aquariusCharacter = new CreateCharacter("aquarius", "./assets/koi.png");
+let leoCharacter = new CreateCharacter("leo", "./assets/lion.png");
+
+let allCharacters = [];
+
+allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
+
+
 
 let playerChosenCharacter;
 let pcChosenCharacter;
