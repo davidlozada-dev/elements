@@ -6,6 +6,7 @@ const pcStatusInfoElement = document.getElementById("pc-status-info");
 const playerStatusInfoElement = document.getElementById("player-status-info");
 
 
+
 window.addEventListener("load", setEventListeners);
 
 function setEventListeners() {
@@ -23,7 +24,6 @@ function setEventListeners() {
 
   const chooseCharacterOptionsElement = document.getElementById("choose-character-options");
   let characterElements;
-  let capitalizedName;
   allCharacters.forEach(character => {
     capitalizedName = character.name.charAt(0).toUpperCase() + character.name.slice(1);
     characterElements = `<input type="radio" name="character" id="${character.name}" value="${capitalizedName}" />
@@ -40,9 +40,10 @@ function choosePlayerCharacter() {
   let characters = document.getElementsByName("character");
 
   let characterCell = document.getElementById("player-character");
-
-
   let parentElement = document.getElementById("player-character-img");
+  
+  let imgChildElement = document.createElement("img");
+
   let playerCharacterImage;
 
   for (let i = 0; i < characters.length; i++) {
@@ -51,36 +52,51 @@ function choosePlayerCharacter() {
     }
   }
 
+  characterObject = allCharacters.filter(character => character.name == (playerChosenCharacter.toLowerCase()));
+
   choosePcCharacter();
 
   characterCell.innerText = playerChosenCharacter;
   playerStatusInfoElement.appendChild(displayHearts(playerLives));
 
-  playerCharacterImage = selectCharacterImage(playerChosenCharacter, false);
-  parentElement.insertBefore(playerCharacterImage, parentElement.firstChild);
+  playerCharacterImage = characterObject[0].image;
+
+  imgChildElement.id = "player-img";
+  imgChildElement.src = playerCharacterImage;
+  imgChildElement.alt = playerChosenCharacter;
+  imgChildElement.className = "character-img";
+
+
+  parentElement.insertBefore(imgChildElement, parentElement.firstChild);
 }
 
 function choosePcCharacter() {
-  let randomNumber = randomNumberGivenARange(1, 3);
+  let randomNumber = randomNumberGivenARange(0, (allCharacters.length - 1));
 
   let characterCell = document.getElementById("pc-character");
 
   let parentElement = document.getElementById("pc-character-img");
+
+  let imgChildElement = document.createElement("img");
+
   let pcCharacterImage;
 
-  if (randomNumber == 1) {
-    pcChosenCharacter = "Capricorn";
-  } else if (randomNumber == 2) {
-    pcChosenCharacter = "Aquarius";
-  } else {
-    pcChosenCharacter = "Leo";
-  }
+  pcChosenCharacter =  allCharacters[randomNumber].name;
+  pcCharacterImage = allCharacters[randomNumber].image;
 
-  characterCell.innerText = pcChosenCharacter;
+  capitalizedName  = pcChosenCharacter.charAt(0).toUpperCase() + pcChosenCharacter.slice(1);
+  
+  imgChildElement.id = "pc-img";
+  imgChildElement.src = pcCharacterImage;
+  imgChildElement.alt = capitalizedName;
+  imgChildElement.className = "character-img";
+
+  
+  characterCell.innerText = capitalizedName;
   pcStatusInfoElement.appendChild(displayHearts(pcLives));
 
-  pcCharacterImage = selectCharacterImage(pcChosenCharacter, false);
-  parentElement.insertBefore(pcCharacterImage, parentElement.firstChild);
+
+  parentElement.insertBefore(imgChildElement, parentElement.firstChild);
 
   chooseCharacterElement.style.display = "none";
 
@@ -164,37 +180,37 @@ function checkingScore() {
   }
 }
 
-function selectCharacterImage(characterName, isPlayer) {
-  let selectedImage = document.createElement("img");
-  selectedImage.id = isPlayer ? "player-img" : "pc-img";
-  selectedImage.className = "character-img";
+// function selectCharacterImage(characterName, isPlayer) {
+//   let selectedImage = document.createElement("img");
+//   selectedImage.id = isPlayer ? "player-img" : "pc-img";
+//   selectedImage.className = "character-img";
 
-  switch (characterName) {
-    case "Capricorn":
-      selectedImage.src = "./assets/goat.png";
-      selectedImage.alt = "Capricorn";
+//   switch (characterName) {
+//     case "Capricorn":
+//       selectedImage.src = "./assets/goat.png";
+//       selectedImage.alt = "Capricorn";
 
-      break;
+//       break;
 
-    case "Aquarius":
-      selectedImage.src = "./assets/koi.png";
-      selectedImage.alt = "Aquarius";
+//     case "Aquarius":
+//       selectedImage.src = "./assets/koi.png";
+//       selectedImage.alt = "Aquarius";
 
-      break;
+//       break;
 
-    case "Leo":
-      selectedImage.src = "./assets/lion.png";
-      selectedImage.alt = "Leo";
+//     case "Leo":
+//       selectedImage.src = "./assets/lion.png";
+//       selectedImage.alt = "Leo";
 
-      break;
+//       break;
 
-    default:
-      selectedImage.src = "./assets/warning.png";
-      selectedImage.alt = "Warning";
-  }
+//     default:
+//       selectedImage.src = "./assets/warning.png";
+//       selectedImage.alt = "Warning";
+//   }
 
-  return selectedImage;
-}
+//   return selectedImage;
+// }
 
 function displayHearts(number) {
   let imageElement;
@@ -229,10 +245,11 @@ let allCharacters = [];
 allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
 
 
-
+let characterObject;
 let playerChosenCharacter;
 let pcChosenCharacter;
 let playerVictories = 0;
 let playerLives = 3;
 let pcVictories = 0;
 let pcLives = 3;
+let capitalizedName;
