@@ -1,0 +1,22 @@
+{
+  "name": "elements",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/davidlozada-dev/elements.git"
+  },
+  "author": "David Lozada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidlozada-dev/elements/issues"
+  },
+  "homepage": "https://github.com/davidlozada-dev/elements#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

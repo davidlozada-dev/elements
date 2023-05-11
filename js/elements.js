@@ -180,38 +180,6 @@ function checkingScore() {
   }
 }
 
-// function selectCharacterImage(characterName, isPlayer) {
-//   let selectedImage = document.createElement("img");
-//   selectedImage.id = isPlayer ? "player-img" : "pc-img";
-//   selectedImage.className = "character-img";
-
-//   switch (characterName) {
-//     case "Capricorn":
-//       selectedImage.src = "./assets/goat.png";
-//       selectedImage.alt = "Capricorn";
-
-//       break;
-
-//     case "Aquarius":
-//       selectedImage.src = "./assets/koi.png";
-//       selectedImage.alt = "Aquarius";
-
-//       break;
-
-//     case "Leo":
-//       selectedImage.src = "./assets/lion.png";
-//       selectedImage.alt = "Leo";
-
-//       break;
-
-//     default:
-//       selectedImage.src = "./assets/warning.png";
-//       selectedImage.alt = "Warning";
-//   }
-
-//   return selectedImage;
-// }
-
 function displayHearts(number) {
   let imageElement;
   let imageDivElement = document.createElement("div");
