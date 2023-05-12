@@ -10,6 +10,9 @@ const playerStatusInfoElement = document.getElementById("player-status-info");
 window.addEventListener("load", setEventListeners);
 
 function setEventListeners() {
+
+
+
   let selectCharacterBtn = document.getElementById("choose-character-btn");
   selectCharacterBtn.addEventListener("click", choosePlayerCharacter);
 
@@ -33,8 +36,24 @@ function setEventListeners() {
     </label>`;
 
     chooseCharacterOptionsElement.innerHTML += characterElements;
+
   });
+
+
+  joinVideogame();
+
 }
+
+function joinVideogame(){
+  fetch("http://localhost:3000/join")
+  .then(response => response.json())
+  .then(id => {
+    console.log("This is the user's id: " + id);
+  });
+
+}
+
+
 
 function choosePlayerCharacter() {
   let characters = document.getElementsByName("character");
