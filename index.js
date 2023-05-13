@@ -53,7 +53,7 @@ app.post("/createCharacter/:id", (req, res) => {
 
   });
 
-  console.log(players);/*  */
+  console.log(players);
 
   res.end();
 });
