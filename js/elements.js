@@ -5,14 +5,21 @@ const subtitleElement = document.getElementById("subtitle");
 const pcStatusInfoElement = document.getElementById("pc-status-info");
 const playerStatusInfoElement = document.getElementById("player-status-info");
 
+let characterObject;
+let playerChosenCharacter;
+let pcChosenCharacter;
+let playerVictories = 0;
+let playerLives = 3;
+let pcVictories = 0;
+let pcLives = 3;
+let capitalizedName;
+let playerId;
 
+let arreglo;
 
 window.addEventListener("load", setEventListeners);
 
 function setEventListeners() {
-
-
-
   let selectCharacterBtn = document.getElementById("choose-character-btn");
   selectCharacterBtn.addEventListener("click", choosePlayerCharacter);
 
@@ -25,10 +32,13 @@ function setEventListeners() {
   battlefieldElement.style.display = "none";
   finalResultElement.style.display = "none";
 
-  const chooseCharacterOptionsElement = document.getElementById("choose-character-options");
+  const chooseCharacterOptionsElement = document.getElementById(
+    "choose-character-options"
+  );
   let characterElements;
-  allCharacters.forEach(character => {
-    capitalizedName = character.name.charAt(0).toUpperCase() + character.name.slice(1);
+  allCharacters.forEach((character) => {
+    capitalizedName =
+      character.name.charAt(0).toUpperCase() + character.name.slice(1);
     characterElements = `<input type="radio" name="character" id="${character.name}" value="${capitalizedName}" />
     <label for="${character.name}">
        <img src="${character.image}" alt="${capitalizedName}" class="first-card-character-img" />
@@ -36,31 +46,39 @@ function setEventListeners() {
     </label>`;
 
     chooseCharacterOptionsElement.innerHTML += characterElements;
-
   });
-
 
   joinVideogame();
-
 }
 
-function joinVideogame(){
-  fetch("http://localhost:3000/join")
-  .then(response => response.json())
-  .then(id => {
-    console.log("This is the user's id: " + id);
+function joinVideogame() {
+  fetch("http://localhost:5000/join")
+    .then((response) => response.json())
+    .then((id) => {
+      playerId = id;
+      console.log("This is the user's id: " + id);
+    });
+}
+
+function sendChosenCharacterToBackend(characterName) {
+  alert(characterName);
+  fetch(`http://localhost:5000/createCharacter/${playerId}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      characterName: characterName
+    })
   });
-
 }
-
-
 
 function choosePlayerCharacter() {
   let characters = document.getElementsByName("character");
 
   let characterCell = document.getElementById("player-character");
   let parentElement = document.getElementById("player-character-img");
-  
+
   let imgChildElement = document.createElement("img");
 
   let playerCharacterImage;
@@ -71,7 +89,9 @@ function choosePlayerCharacter() {
     }
   }
 
-  characterObject = allCharacters.filter(character => character.name == (playerChosenCharacter.toLowerCase()));
+  characterObject = allCharacters.filter(
+    (character) => character.name == playerChosenCharacter.toLowerCase()
+  );
 
   choosePcCharacter();
 
@@ -85,12 +105,15 @@ function choosePlayerCharacter() {
   imgChildElement.alt = playerChosenCharacter;
   imgChildElement.className = "character-img";
 
-
   parentElement.insertBefore(imgChildElement, parentElement.firstChild);
+
+  sendChosenCharacterToBackend(playerChosenCharacter);
+
+  // alert(playerChosenCharacter);
 }
 
 function choosePcCharacter() {
-  let randomNumber = randomNumberGivenARange(0, (allCharacters.length - 1));
+  let randomNumber = randomNumberGivenARange(0, allCharacters.length - 1);
 
   let characterCell = document.getElementById("pc-character");
 
@@ -100,20 +123,19 @@ function choosePcCharacter() {
 
   let pcCharacterImage;
 
-  pcChosenCharacter =  allCharacters[randomNumber].name;
+  pcChosenCharacter = allCharacters[randomNumber].name;
   pcCharacterImage = allCharacters[randomNumber].image;
 
-  capitalizedName  = pcChosenCharacter.charAt(0).toUpperCase() + pcChosenCharacter.slice(1);
-  
+  capitalizedName =
+    pcChosenCharacter.charAt(0).toUpperCase() + pcChosenCharacter.slice(1);
+
   imgChildElement.id = "pc-img";
   imgChildElement.src = pcCharacterImage;
   imgChildElement.alt = capitalizedName;
   imgChildElement.className = "character-img";
 
-  
   characterCell.innerText = capitalizedName;
   pcStatusInfoElement.appendChild(displayHearts(pcLives));
-
 
   parentElement.insertBefore(imgChildElement, parentElement.firstChild);
 
@@ -140,8 +162,6 @@ function battle() {
   let battleResult;
   let battleResultElement = document.getElementById("battle-result");
 
-
-
   if (pcChosenAttack == playerChosenAttack) {
     battleResult = "Tie";
   } else if (pcChosenAttack == 1 && playerChosenAttack == 2) {
@@ -151,7 +171,6 @@ function battle() {
 
     playerStatusInfoElement.replaceChildren();
     playerStatusInfoElement.appendChild(displayHearts(playerLives));
-
   } else if (pcChosenAttack == 2 && playerChosenAttack == 3) {
     battleResult = "PC's victory!";
     pcVictories++;
@@ -159,7 +178,6 @@ function battle() {
 
     playerStatusInfoElement.replaceChildren();
     playerStatusInfoElement.appendChild(displayHearts(playerLives));
-
   } else if (pcChosenAttack == 3 && playerChosenAttack == 1) {
     battleResult = "PC's victory!";
     pcVictories++;
@@ -167,7 +185,6 @@ function battle() {
 
     playerStatusInfoElement.replaceChildren();
     playerStatusInfoElement.appendChild(displayHearts(playerLives));
-
   } else {
     battleResult = "Player's victory";
     playerVictories++;
@@ -184,7 +201,6 @@ function battle() {
 
 function checkingScore() {
   if (playerLives == 0 || pcLives == 0) {
-
     let result =
       playerLives == 0 ? "PC has won the game!" : "Player has won the game!";
 
@@ -216,8 +232,8 @@ function displayHearts(number) {
   return imageDivElement;
 }
 
-class CreateCharacter{
-  constructor(name, image){
+class CreateCharacter {
+  constructor(name, image) {
     this.name = name;
     this.image = image;
   }
@@ -230,13 +246,3 @@ let leoCharacter = new CreateCharacter("leo", "./assets/lion.png");
 let allCharacters = [];
 
 allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
-
-
-let characterObject;
-let playerChosenCharacter;
-let pcChosenCharacter;
-let playerVictories = 0;
-let playerLives = 3;
-let pcVictories = 0;
-let pcLives = 3;
-let capitalizedName;
