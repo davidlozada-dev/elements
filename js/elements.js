@@ -4,13 +4,15 @@ const finalResultElement = document.getElementById("final-result");
 const subtitleElement = document.getElementById("subtitle");
 const pcStatusInfoElement = document.getElementById("pc-status-info");
 const playerStatusInfoElement = document.getElementById("player-status-info");
-const displayMapElement = document.getElementById("display-map");
+const displayMapElement = document.getElementById("display-map")
 const mapElement = document.getElementById("map");
 const canvas = mapElement.getContext("2d");
 const characterImageCanvas = new Image();
 
 
-characterImageCanvas.src = capricornCharacter.image;
+
+
+
 
 let characterObject;
 let playerChosenCharacter;
@@ -57,6 +59,7 @@ function setEventListeners() {
 
   joinVideogame();
 
+  characterImageCanvas.src = capricornCharacter.image;
   canvas.drawImage(
     characterImageCanvas,
     0, //x position
