@@ -7,6 +7,10 @@ const playerStatusInfoElement = document.getElementById("player-status-info");
 const displayMapElement = document.getElementById("display-map");
 const mapElement = document.getElementById("map");
 const canvas = mapElement.getContext("2d");
+const characterImageCanvas = new Image();
+
+
+characterImageCanvas.src = capricornCharacter.image;
 
 let characterObject;
 let playerChosenCharacter;
@@ -264,8 +268,7 @@ allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
   //CANVAS PRACTICE
 
   // create an image object
-  let characterImageCanvas = new Image();
-  characterImageCanvas.src = capricornCharacter.image;
+
 
 
 
