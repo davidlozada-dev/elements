@@ -212,6 +212,10 @@ label p {
    font-size: 24px;
 }
 
+#map {
+   border: 1px solid #917FB3;
+}
+
 @media (max-width: 450px) {
    body {
       align-items: center;

@@ -4,6 +4,9 @@ const finalResultElement = document.getElementById("final-result");
 const subtitleElement = document.getElementById("subtitle");
 const pcStatusInfoElement = document.getElementById("pc-status-info");
 const playerStatusInfoElement = document.getElementById("player-status-info");
+const displayMapElement = document.getElementById("display-map");
+const mapElement = document.getElementById("map");
+const canvas = mapElement.getContext("2d");
 
 let characterObject;
 let playerChosenCharacter;
@@ -49,6 +52,15 @@ function setEventListeners() {
   });
 
   joinVideogame();
+
+  canvas.drawImage(
+    characterImageCanvas,
+    0, //x position
+    0, //y position
+    100, //width
+    100 //height
+  );
+  
 }
 
 function joinVideogame() {
@@ -246,3 +258,14 @@ let leoCharacter = new CreateCharacter("leo", "./assets/lion.png");
 let allCharacters = [];
 
 allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
+
+// canvas.fillRect(0, 0, 10, 10);
+
+  //CANVAS PRACTICE
+
+  // create an image object
+  let characterImageCanvas = new Image();
+  characterImageCanvas.src = capricornCharacter.image;
+
+
+
