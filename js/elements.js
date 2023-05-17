@@ -59,7 +59,6 @@ function setEventListeners() {
 
   joinVideogame();
 
-  characterImageCanvas.src = capricornCharacter.image;
   canvas.drawImage(
     characterImageCanvas,
     0, //x position
@@ -274,4 +273,5 @@ allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
 
 
 
+  characterImageCanvas.src = capricornCharacter.image;
 
