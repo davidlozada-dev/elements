@@ -9,11 +9,6 @@ const mapElement = document.getElementById("map");
 const canvas = mapElement.getContext("2d");
 const characterImageCanvas = new Image();
 
-
-
-
-
-
 let characterObject;
 let playerChosenCharacter;
 let pcChosenCharacter;
@@ -23,7 +18,6 @@ let pcVictories = 0;
 let pcLives = 3;
 let capitalizedName;
 let playerId;
-
 let arreglo;
 
 window.addEventListener("load", setEventListeners);
@@ -38,6 +32,7 @@ function setEventListeners() {
   });
 
   chooseCharacterElement.style.display = "flex";
+  displayMapElement.style.display = "none";
   battlefieldElement.style.display = "none";
   finalResultElement.style.display = "none";
 
@@ -59,13 +54,9 @@ function setEventListeners() {
 
   joinVideogame();
 
-  canvas.drawImage(
-    characterImageCanvas,
-    0, //x position
-    0, //y position
-    100, //width
-    100 //height
-  );
+
+  initializeMap();
+
   
 }
 
@@ -79,7 +70,7 @@ function joinVideogame() {
 }
 
 function sendChosenCharacterToBackend(characterName) {
-  alert(characterName);
+  // alert(characterName);
   fetch(`http://localhost:5000/createCharacter/${playerId}`, {
     method: "post",
     headers: {
@@ -117,6 +108,7 @@ function choosePlayerCharacter() {
   playerStatusInfoElement.appendChild(displayHearts(playerLives));
 
   playerCharacterImage = characterObject[0].image;
+  characterImageCanvas.src = characterObject[0].image; //Character image to be displayed on the map
 
   imgChildElement.id = "player-img";
   imgChildElement.src = playerCharacterImage;
@@ -126,8 +118,10 @@ function choosePlayerCharacter() {
   parentElement.insertBefore(imgChildElement, parentElement.firstChild);
 
   sendChosenCharacterToBackend(playerChosenCharacter);
-
-  // alert(playerChosenCharacter);
+  
+  displayMapElement.style.display = "flex";
+  subtitleElement.innerText = "Find your opponent"
+  initializeMap();
 }
 
 function choosePcCharacter() {
@@ -160,7 +154,7 @@ function choosePcCharacter() {
   chooseCharacterElement.style.display = "none";
 
   subtitleElement.innerText = "Choose an attack!";
-  battlefieldElement.style.display = "flex";
+  // battlefieldElement.style.display = "flex";
 
   let selectAttackBtn = document.querySelectorAll(".attack-btn");
   selectAttackBtn.forEach((element) => {
@@ -265,13 +259,26 @@ let allCharacters = [];
 
 allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
 
-// canvas.fillRect(0, 0, 10, 10);
+function initializeMap() {
+  const backgroundImage = new Image();
+  backgroundImage.src = "./assets/background.jpg"
 
-  //CANVAS PRACTICE
+  mapElement.width = 600;
+  mapElement.height = 460;
 
-  // create an image object
+  canvas.drawImage(
+    backgroundImage,
+    0,
+    0,
+    mapElement.width,
+    mapElement.height
+  );
 
-
-
-  characterImageCanvas.src = capricornCharacter.image;
-
+  canvas.drawImage(
+    characterImageCanvas,
+    0, //x position
+    0, //y position
+    100, //width
+    100 //height
+  );
+}
