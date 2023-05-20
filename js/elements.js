@@ -4,7 +4,7 @@ const finalResultElement = document.getElementById("final-result");
 const subtitleElement = document.getElementById("subtitle");
 const pcStatusInfoElement = document.getElementById("pc-status-info");
 const playerStatusInfoElement = document.getElementById("player-status-info");
-const displayMapElement = document.getElementById("display-map")
+const displayMapElement = document.getElementById("display-map");
 const mapElement = document.getElementById("map");
 const canvas = mapElement.getContext("2d");
 const characterImageCanvas = new Image();
@@ -19,6 +19,27 @@ let pcLives = 3;
 let capitalizedName;
 let playerId;
 let arreglo;
+
+class CreateCharacter {
+  constructor(name, image) {
+    this.name = name;
+    this.image = image;
+    this.x = 20;
+    this.y = 30;
+    this.width = 80;
+    this.height = 80;
+    this.canvasCharacterImage = new Image();
+    this.canvasCharacterImage.src = image;
+  }
+}
+
+let capricornCharacter = new CreateCharacter("capricorn", "./assets/goat.png");
+let aquariusCharacter = new CreateCharacter("aquarius", "./assets/koi.png");
+let leoCharacter = new CreateCharacter("leo", "./assets/lion.png");
+
+let allCharacters = [];
+
+allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
 
 window.addEventListener("load", setEventListeners);
 
@@ -54,10 +75,7 @@ function setEventListeners() {
 
   joinVideogame();
 
-
   initializeMap();
-
-  
 }
 
 function joinVideogame() {
@@ -74,11 +92,11 @@ function sendChosenCharacterToBackend(characterName) {
   fetch(`http://localhost:5000/createCharacter/${playerId}`, {
     method: "post",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      characterName: characterName
-    })
+      characterName: characterName,
+    }),
   });
 }
 
@@ -102,13 +120,14 @@ function choosePlayerCharacter() {
     (character) => character.name == playerChosenCharacter.toLowerCase()
   );
 
+  characterObject = characterObject[0];
+
   choosePcCharacter();
 
   characterCell.innerText = playerChosenCharacter;
   playerStatusInfoElement.appendChild(displayHearts(playerLives));
 
-  playerCharacterImage = characterObject[0].image;
-  characterImageCanvas.src = characterObject[0].image; //Character image to be displayed on the map
+  playerCharacterImage = characterObject.image;
 
   imgChildElement.id = "player-img";
   imgChildElement.src = playerCharacterImage;
@@ -118,9 +137,9 @@ function choosePlayerCharacter() {
   parentElement.insertBefore(imgChildElement, parentElement.firstChild);
 
   sendChosenCharacterToBackend(playerChosenCharacter);
-  
+
   displayMapElement.style.display = "flex";
-  subtitleElement.innerText = "Find your opponent"
+  subtitleElement.innerText = "Find your opponent";
   initializeMap();
 }
 
@@ -244,41 +263,46 @@ function displayHearts(number) {
   return imageDivElement;
 }
 
-class CreateCharacter {
-  constructor(name, image) {
-    this.name = name;
-    this.image = image;
-  }
-}
-
-let capricornCharacter = new CreateCharacter("capricorn", "./assets/goat.png");
-let aquariusCharacter = new CreateCharacter("aquarius", "./assets/koi.png");
-let leoCharacter = new CreateCharacter("leo", "./assets/lion.png");
-
-let allCharacters = [];
-
-allCharacters.push(capricornCharacter, aquariusCharacter, leoCharacter);
-
 function initializeMap() {
   const backgroundImage = new Image();
-  backgroundImage.src = "./assets/background.jpg"
+  backgroundImage.src = "./assets/background.jpg";
 
   mapElement.width = 600;
   mapElement.height = 460;
 
-  canvas.drawImage(
-    backgroundImage,
-    0,
-    0,
-    mapElement.width,
-    mapElement.height
-  );
+  canvas.clearRect(0, 0, canvas.width, canvas.height);
+
+  canvas.drawImage(backgroundImage, 0, 0, mapElement.width, mapElement.height);
 
   canvas.drawImage(
-    characterImageCanvas,
-    0, //x position
-    0, //y position
-    100, //width
-    100 //height
+    characterObject.canvasCharacterImage,
+    characterObject.x, //x position
+    characterObject.y, //y position
+    characterObject.width, //width
+    characterObject.height //height
   );
+}
+
+function moveCharacterUp() {
+  characterObject.y = characterObject.y - 5;
+
+  initializeMap();
+}
+
+function moveCharacterRight() {
+  characterObject.x = characterObject.x + 5;
+
+  initializeMap();
+}
+
+function moveCharacterDown() {
+  characterObject.y = characterObject.y + 5;
+
+  initializeMap();
+}
+
+function moveCharacterLeft() {
+  characterObject.x = characterObject.x - 5;
+
+  initializeMap();
 }
