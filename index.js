@@ -60,5 +60,5 @@ app.post("/createCharacter/:id", (req, res) => {
 
 //Turn on the server in port 3000
 app.listen(port, () => {
-  console.log("Server successfully started!");
+  console.log("Server started!");
 });
